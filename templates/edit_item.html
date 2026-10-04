@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+تعديل الغرض
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="add-page">
+
+
+    <div class="page-title">
+
+        <span>
+            تعديل الغرض
+        </span>
+
+        <h1>
+            عدّل معلومات الغرض
+        </h1>
+
+    </div>
+
+
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+        class="item-form"
+    >
+
+
+        <div class="form-section">
+
+            <h2>
+                📝 معلومات الغرض
+            </h2>
+
+
+            <div class="input-group">
+
+                <label>
+                    اسم الغرض
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    value="{{ item['name'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    التصنيف
+                </label>
+
+                <input
+                    type="text"
+                    name="category"
+                    value="{{ item['category'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    الوصف
+                </label>
+
+                <textarea
+                    name="description"
+                    required
+                >{{ item['description'] }}</textarea>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    القيمة التقريبية
+                </label>
+
+                <input
+                    type="number"
+                    name="estimated_value"
+                    value="{{ item['estimated_value'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    حالة الغرض
+                </label>
+
+                <input
+                    type="text"
+                    name="condition"
+                    value="{{ item['condition'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    ماذا تريد مقابله؟
+                </label>
+
+                <input
+                    type="text"
+                    name="wanted"
+                    value="{{ item['wanted'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    المنطقة
+                </label>
+
+                <input
+                    type="text"
+                    name="location"
+                    value="{{ item['location'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    اسم صاحب الغرض
+                </label>
+
+                <input
+                    type="text"
+                    name="owner"
+                    value="{{ item['owner'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    رقم الهاتف
+                </label>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    value="{{ item['phone'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    صورة جديدة
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/png,image/jpeg"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-button"
+        >
+            حفظ التعديلات ✓
+        </button>
+
+
+    </form>
+
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+الرئيسية - Exchange
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            ♻️ لا تهدر ما يمكن أن يستفيد منه غيرك
+        </span>
+
+
+        <h1>
+
+            غرضك القديم
+
+            <span>
+                قد يكون قيمة لشخص آخر
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            اعرض الأشياء التي لم تعد بحاجة إليها،
+            وابحث عن أشخاص يرغبون بتبادلها معك.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                class="main-button"
+                href="{{ url_for('add_item') }}"
+            >
+                + اعرض غرضك الآن
+            </a>
+
+
+            <a
+                class="secondary-button"
+                href="{{ url_for('show_items') }}"
+            >
+                تصفح الأغراض
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📷
+        </div>
+
+        <h3>
+            أضف صورة
+        </h3>
+
+        <p>
+            اعرض صورة واضحة للغرض.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            💰
+        </div>
+
+        <h3>
+            حدد القيمة
+        </h3>
+
+        <p>
+            أضف القيمة التقريبية للغرض.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🔄
+        </div>
+
+        <h3>
+            تبادل بسهولة
+        </h3>
+
+        <p>
+            أرسل طلب مبادلة وانتظر موافقة صاحب الغرض.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<section class="latest">
+
+    <div class="section-header">
+
+        <div>
+
+            <span>
+                أحدث الإضافات
+            </span>
+
+            <h2>
+                أغراض متاحة للتبادل
+            </h2>
+
+        </div>
+
+
+        <a href="{{ url_for('show_items') }}">
+            عرض الكل →
+        </a>
+
+    </div>
+
+
+    <div class="items-grid">
+
+
+        {% for item in items %}
+
+
+        <div class="item-card">
+
+
+            {% if item["image"] %}
+
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='uploads/' + item['image']
+                ) }}"
+                alt="{{ item['name'] }}"
+            >
+
+            {% else %}
+
+            <div class="no-image">
+                📦
+            </div>
+
+            {% endif %}
+
+
+            <div class="item-content">
+
+
+                <span class="category">
+                    {{ item["category"] }}
+                </span>
+
+
+                <h3>
+                    {{ item["name"] }}
+                </h3>
+
+
+                <p class="description">
+                    {{ item["description"] }}
+                </p>
+
+
+                <div class="price">
+                    💰
+                    {{ item["estimated_value"] }}
+                    دينار
+                </div>
+
+
+                <div class="wanted">
+
+                    🔄 يريد مقابله:
+
+                    <strong>
+                        {{ item["wanted"] }}
+                    </strong>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for(
+                        'request_exchange',
+                        item_id=item['id']
+                    ) }}"
+                    class="exchange-button"
+                >
+                    🔄 أريد المبادلة
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <h3>
+                لا توجد أغراض حتى الآن
+            </h3>
+
+            <p>
+                كن أول شخص يعرض غرضًا!
+            </p>
+
+            <a
+                class="main-button"
+                href="{{ url_for('add_item') }}"
+            >
+                أضف غرضك
+            </a>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+طلب مبادلة - Exchange
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="add-page">
+
+
+    <div class="page-title">
+
+        <span>
+            طلب مبادلة
+        </span>
+
+        <h1>
+            أرسل طلبك لصاحب الغرض
+        </h1>
+
+    </div>
+
+
+    <div class="request-item">
+
+
+        {% if item["image"] %}
+
+        <img
+            src="{{ url_for(
+                'static',
+                filename='uploads/' + item['image']
+            ) }}"
+        >
+
+        {% endif %}
+
+
+        <h2>
+            {{ item["name"] }}
+        </h2>
+
+
+        <p>
+            💰 القيمة التقريبية:
+            {{ item["estimated_value"] }}
+            دينار
+        </p>
+
+
+        <p>
+            🔄 صاحب الغرض يريد:
+            {{ item["wanted"] }}
+        </p>
+
+
+    </div>
+
+
+    <form
+        method="POST"
+        class="item-form"
+    >
+
+
+        <div class="form-section">
+
+            <h2>
+                👤 معلوماتك
+            </h2>
+
+
+            <div class="input-group">
+
+                <label>
+                    اسمك
+                </label>
+
+                <input
+                    type="text"
+                    name="requester_name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    رقم الهاتف
+                </label>
+
+                <input
+                    type="tel"
+                    name="requester_phone"
+                    placeholder="0791234567"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    رسالة لصاحب الغرض
+                </label>
+
+                <textarea
+                    name="message"
+                    placeholder="اكتب ماذا تريد أن تعرض مقابل الغرض..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                إرسال طلب المبادلة 🔄
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+</section>
+
+
+{% endblock %}

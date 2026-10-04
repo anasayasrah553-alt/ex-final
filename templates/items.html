@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+الأغراض - Exchange
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="items-page">
+
+
+    <div class="page-title">
+
+        <span>
+            سوق التبادل
+        </span>
+
+        <h1>
+            اكتشف الأغراض المعروضة
+        </h1>
+
+        <p>
+            ابحث عن الغرض الذي يناسبك.
+        </p>
+
+    </div>
+
+
+    <form
+        method="GET"
+        class="search-box"
+    >
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="🔍 ابحث عن غرض..."
+        >
+
+
+        <select name="category">
+
+            <option value="">
+                جميع التصنيفات
+            </option>
+
+            <option value="إلكترونيات">
+                إلكترونيات
+            </option>
+
+            <option value="ملابس">
+                ملابس
+            </option>
+
+            <option value="أثاث">
+                أثاث
+            </option>
+
+            <option value="كتب">
+                كتب
+            </option>
+
+            <option value="ألعاب">
+                ألعاب
+            </option>
+
+            <option value="أخرى">
+                أخرى
+            </option>
+
+        </select>
+
+
+        <button type="submit">
+            بحث
+        </button>
+
+    </form>
+
+
+    <div class="items-grid">
+
+
+        {% for item in items %}
+
+
+        <div class="item-card">
+
+
+            {% if item["image"] %}
+
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='uploads/' + item['image']
+                ) }}"
+                alt="{{ item['name'] }}"
+            >
+
+            {% else %}
+
+            <div class="no-image">
+                📦
+            </div>
+
+            {% endif %}
+
+
+            <div class="item-content">
+
+
+                <div class="card-top">
+
+                    <span class="category">
+                        {{ item["category"] }}
+                    </span>
+
+                    <span class="condition">
+                        {{ item["condition"] }}
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    {{ item["name"] }}
+                </h2>
+
+
+                <p class="description">
+                    {{ item["description"] }}
+                </p>
+
+
+                <div class="price">
+
+                    💰
+                    {{ item["estimated_value"] }}
+                    دينار
+
+                </div>
+
+
+                <div class="item-details">
+
+                    <p>
+                        🔄 يريد:
+                        <strong>
+                            {{ item["wanted"] }}
+                        </strong>
+                    </p>
+
+
+                    <p>
+                        📍
+                        {{ item["location"] }}
+                    </p>
+
+
+                    <p>
+                        👤
+                        {{ item["owner"] }}
+                    </p>
+
+                </div>
+
+
+                {% if item["status"] == "available" %}
+
+
+                <a
+                    href="{{ url_for(
+                        'request_exchange',
+                        item_id=item['id']
+                    ) }}"
+                    class="exchange-button"
+                >
+                    🔄 أريد المبادلة
+                </a>
+
+
+                {% else %}
+
+
+                <div class="exchanged">
+
+                    ✓ تمت المبادلة بنجاح
+
+                </div>
+
+
+                {% endif %}
+
+
+                <div class="card-actions">
+
+
+                    <a
+                        href="{{ url_for(
+                            'edit_item',
+                            item_id=item['id']
+                        ) }}"
+                        class="edit-button"
+                    >
+                        ✏️ تعديل
+                    </a>
+
+
+                    <a
+                        href="{{ url_for(
+                            'delete_item',
+                            item_id=item['id']
+                        ) }}"
+                        class="delete-button"
+                        onclick="return confirm('هل أنت متأكد من حذف هذا الغرض؟');"
+                    >
+                        🗑️ حذف
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <h2>
+                لم نجد أي أغراض
+            </h2>
+
+            <p>
+                جرّب كلمة بحث أخرى.
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+طلبات المبادلة
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="items-page">
+
+
+    <div class="page-title">
+
+        <span>
+            Exchange
+        </span>
+
+        <h1>
+            طلبات المبادلة
+        </h1>
+
+        <p>
+            راجع طلبات الأشخاص الذين يريدون مبادلة أغراضهم معك.
+        </p>
+
+    </div>
+
+
+    <div class="requests-list">
+
+
+        {% for request in requests %}
+
+
+        <div class="request-card">
+
+
+            <div>
+
+                <span class="category">
+                    {{ request["item_name"] }}
+                </span>
+
+
+                <h2>
+                    👤 {{ request["requester_name"] }}
+                </h2>
+
+
+                <p>
+                    📞
+                    {{ request["requester_phone"] }}
+                </p>
+
+
+                <p>
+                    💬
+                    {{ request["message"] }}
+                </p>
+
+
+                {% if request["status"] == "pending" %}
+
+                <span class="pending">
+                    ⏳ قيد الانتظار
+                </span>
+
+                {% elif request["status"] == "accepted" %}
+
+                <span class="accepted">
+                    ✓ تمت المبادلة بنجاح
+                </span>
+
+                {% else %}
+
+                <span class="rejected">
+                    ✕ تم رفض الطلب
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if request["status"] == "pending" %}
+
+
+            <div class="request-actions">
+
+
+                <a
+                    href="{{ url_for(
+                        'accept_request',
+                        request_id=request['id']
+                    ) }}"
+                    class="accept-button"
+                >
+                    ✓ قبول
+                </a>
+
+
+                <a
+                    href="{{ url_for(
+                        'reject_request',
+                        request_id=request['id']
+                    ) }}"
+                    class="delete-button"
+                >
+                    ✕ رفض
+                </a>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <h2>
+                لا توجد طلبات مبادلة
+            </h2>
+
+            <p>
+                عندما يرسل شخص طلب مبادلة سيظهر هنا.
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

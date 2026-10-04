@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+إضافة غرض - Exchange
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="add-page">
+
+
+    <div class="page-title">
+
+        <span>
+            أضف غرضًا جديدًا
+        </span>
+
+        <h1>
+            ماذا تريد أن تعرض؟
+        </h1>
+
+        <p>
+            أدخل معلومات الغرض حتى يستطيع الآخرون معرفة تفاصيله.
+        </p>
+
+    </div>
+
+
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+        class="item-form"
+    >
+
+
+        <div class="form-section">
+
+            <h2>
+                📷 صورة الغرض
+            </h2>
+
+
+            <label class="upload-box">
+
+                <span>
+                    📷
+                </span>
+
+                <strong>
+                    اختر صورة
+                </strong>
+
+                <small>
+                    PNG - JPG - JPEG
+                </small>
+
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/png,image/jpeg"
+                    required
+                >
+
+            </label>
+
+        </div>
+
+
+        <div class="form-section">
+
+            <h2>
+                📝 معلومات الغرض
+            </h2>
+
+
+            <div class="form-grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        اسم الغرض
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="مثال: جهاز لابتوب"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        التصنيف
+                    </label>
+
+                    <select
+                        name="category"
+                        required
+                    >
+
+                        <option value="">
+                            اختر التصنيف
+                        </option>
+
+                        <option value="إلكترونيات">
+                            إلكترونيات
+                        </option>
+
+                        <option value="ملابس">
+                            ملابس
+                        </option>
+
+                        <option value="أثاث">
+                            أثاث
+                        </option>
+
+                        <option value="كتب">
+                            كتب
+                        </option>
+
+                        <option value="ألعاب">
+                            ألعاب
+                        </option>
+
+                        <option value="أخرى">
+                            أخرى
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        القيمة التقريبية بالدينار
+                    </label>
+
+                    <input
+                        type="number"
+                        name="estimated_value"
+                        placeholder="مثال: 150"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        حالة الغرض
+                    </label>
+
+                    <select
+                        name="condition"
+                        required
+                    >
+
+                        <option value="">
+                            اختر الحالة
+                        </option>
+
+                        <option value="جديد">
+                            جديد
+                        </option>
+
+                        <option value="ممتاز">
+                            ممتاز
+                        </option>
+
+                        <option value="جيد جدًا">
+                            جيد جدًا
+                        </option>
+
+                        <option value="جيد">
+                            جيد
+                        </option>
+
+                        <option value="مستعمل">
+                            مستعمل
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    وصف الغرض
+                </label>
+
+                <textarea
+                    name="description"
+                    placeholder="اكتب تفاصيل عن الغرض وحالته..."
+                    required
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-section">
+
+            <h2>
+                🔄 معلومات التبادل
+            </h2>
+
+
+            <div class="input-group">
+
+                <label>
+                    ماذا تريد مقابل الغرض؟
+                </label>
+
+                <input
+                    type="text"
+                    name="wanted"
+                    placeholder="مثال: هاتف أو جهاز ألعاب"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    المنطقة
+                </label>
+
+                <input
+                    type="text"
+                    name="location"
+                    placeholder="مثال: عمان - الجبيهة"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-section">
+
+            <h2>
+                👤 معلومات صاحب الغرض
+            </h2>
+
+
+            <div class="input-group">
+
+                <label>
+                    اسمك
+                </label>
+
+                <input
+                    type="text"
+                    name="owner"
+                    placeholder="اكتب اسمك"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    رقم الهاتف
+                </label>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="0791234567"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-button"
+        >
+            نشر الغرض 🔄
+        </button>
+
+
+    </form>
+
+</section>
+
+
+{% endblock %}
